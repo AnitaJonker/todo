@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% load bootstrap_icons %}
+    {% bootstrap_javascript %}
+    <title>
+      {% block title %}
+        My Todo
+      {% endblock %}
+    </title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/cover.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+    {% bootstrap_css %}
+  </head>
+  <body>
+    <div id="content">
+      {% block content %}
+        <!-- Child templates will define their content here -->
+      {% endblock %}
+    </div>
+    {% bootstrap_javascript %}
+  </body>
+</html>

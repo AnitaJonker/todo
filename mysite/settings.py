@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'sass_processor',
     'django_bootstrap_icons',
     'livereload',
+    'widget_tweaks',
+    "django_htmx",
     
 ]
 
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "livereload.middleware.LiveReloadScript",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 LIVERELOAD_PORT = 35729  # Default livereload port

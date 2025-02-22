@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load bootstrap_icons %}
+{% block title %}
+  Todo List
+{% endblock %}
+{% block content %}
+  <div class="container-sm px-4 py-5 my-5 text-center">
+    <div class="card shadow-lg p-3 mb-5 rounded-4">
+      <h1 class="display-5 fw-bold text-body-emphasis">{{ title }}</h1>
+      <div class="col-lg-6 mx-auto">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">{% bs_icon 'search' %}</span>
+          <input type="text" class="form-control" placeholder="Search for a task" aria-label="Username" aria-describedby="basic-addon1" />
+        </div>
+        <p class="lead mb-4">Add a new item to your list</p>
+        <div class="d-grid gap-2">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3">New List</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

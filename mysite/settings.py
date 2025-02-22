@@ -17,12 +17,22 @@ SECRET_KEY = 'django-insecure-^t%pa!qo-j6@zq5i7%4bvpw@b^=grxf&gn260hj!vqm)%^t&p0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = []
+STATIC_URL = "static/"
+STATIC_ROOT = "static/"
+SASS_PROCESSOR_ENABLED = True
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
+]
+# STATICFILES_DIRS = [
+#     BASE_DIR / "node_modules/bootstrap/scss",  # Adjust to your SCSS path
+# ]
 
 
 # Application definition
-
 INSTALLED_APPS = [
-    'todo.apps.TodoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap5',
+    'todo',
+    'sass_processor',
     'django_bootstrap_icons',
+    'livereload',
     
 ]
 
@@ -42,7 +55,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "livereload.middleware.LiveReloadScript",
 ]
+
+LIVERELOAD_PORT = 35729  # Default livereload port
+LIVERELOAD_WATCH = [
+    "static/",
+    "templates/",
+    "todo/",
+]
+
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -51,7 +73,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         "DIRS": [
             os.path.join(BASE_DIR, "templates"),  # Default templates directory
-            # os.path.join(BASE_DIR, "templates"),
+            # os.path.join(BASE_DIR, "templates","cards"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

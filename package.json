@@ -1,0 +1,27 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "A list maker application",
+  "main": "index.js",
+  "scripts": {
+    "load": "concurrently \"python manage.py livereload\" \"python manage.py runserver\"",
+    "live": "python manage.py livereload",
+    "server": "python manage.py runserver",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnitaJonker/todo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnitaJonker/todo/issues"
+  },
+  "homepage": "https://github.com/AnitaJonker/todo#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap5": "^1.1.9",
+    "concurrently": "^9.1.2"
+  }
+}

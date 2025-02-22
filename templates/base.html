@@ -1,0 +1,32 @@
+{% load static %}
+{% load sass_tags %}
+{% load bootstrap5 %}
+{% block main_content %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% sass_src 'styles.scss' %}" type="text/css" />
+  {% comment %} {% bootstrap_css %} {% endcomment %}
+  {% bootstrap_javascript %}
+  {% block content %}
+
+  {% endblock %}
+  <script>
+    function logBootstrapBreakpoint() {
+      let width = window.innerWidth
+      let breakpoint = ''
+    
+      if (width < 576) breakpoint = 'xs (Extra Small)'
+      else if (width < 768) breakpoint = 'sm (Small)'
+      else if (width < 992) breakpoint = 'md (Medium)'
+      else if (width < 1200) breakpoint = 'lg (Large)'
+      else if (width < 1400) breakpoint = 'xl (Extra Large)'
+      else breakpoint = 'xxl (Extra Extra Large)'
+    
+      console.log(`Bootstrap Size: ${breakpoint}`)
+    }
+    
+    window.onload = logBootstrapBreakpoint
+    window.onresize = logBootstrapBreakpoint
+  </script>
+  {% comment %} <script src="{% static 'htmx.min.js' %}" defer></script> {% endcomment %}
+  <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js"></script>
+{% endblock %}

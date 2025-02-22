@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load bootstrap_icons %}
+{% block title %}
+  Todo List
+{% endblock %}
+{% block content %}
+  <div class="container-sm px-4 py-5 my-5 text-center">
+    <div class="card shadow-lg p-3 mb-5 rounded-4">
+      <h1 class="display-5 fw-bold text-primary">{{ title }}</h1>
+      <div class="col-lg-6 mx-auto">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1">{% bs_icon 'search' %}</span>
+          <input type="text" class="form-control" placeholder="Search for a task" aria-label="Username" aria-describedby="basic-addon1" />
+        </div>
+        <div class="table-responsive">
+          <table class="table">
+            <thead></thead>
+            <tbody>
+              {% for item in items %}
+                <tr>
+                  <td>
+                    <a href="{% url 'tasks' item.pk %}">{{ item.list_name }}</a>
+                  </td>
+                </tr>
+              {% empty %}
+                <p>No lists Yet</p>
+              {% endfor %}
+            </tbody>
+          </table>
+          <p class="lead mb-4">Add a new item to your list</p>
+        </div>
+        <div class="d-grid gap-2">
+          <a type="button" class="btn btn-primary btn-lg px-4 gap-3" href="{% url 'create_list_form' %}">New List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

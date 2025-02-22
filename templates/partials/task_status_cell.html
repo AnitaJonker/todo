@@ -1,0 +1,15 @@
+<td id="task-status-{{ task.id }}">
+    <div class="form-check">
+        <input 
+            class="form-check-input" 
+            type="checkbox" 
+            value="True" 
+            id="task-{{ task.id }}" 
+            {% if task.status %} checked {% endif %}
+            hx-post="{% url 'update_task_status' task.id %}"
+            hx-trigger="click"
+            hx-target="#task-status-{{ task.id }}"
+            hx-swap="outerHTML"
+        />
+    </div>
+</td>

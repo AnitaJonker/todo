@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap_icons %}
+
+{% block title %}
+  Todo List
+{% endblock title %}
+
+{% block content %}
+  {% comment %} <div class="container-fluid bg-dark text-white p-5">
+    <h1>Welcome to the Todo App</h1>
+    <p>This is the content area where you can manage your todos.</p>
+  </div> {% endcomment %}
+  <div class="container-fluid mt-5 ">
+    <div class="card w-50 shadow-lg p-3 mb-5 rounded-5 rounded-4">
+      <div class="h1 text-center">To Do</div>
+      <div class="card-body ">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">{% bs_icon 'search' %}</span>
+        <input type="text" class="form-control" placeholder="Search for a task" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <button class="btn btn-secondary" type="submit">New List</button>
+
+    </div>
+
+
+{% endblock content %}

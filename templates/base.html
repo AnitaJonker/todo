@@ -28,5 +28,9 @@
     window.onresize = logBootstrapBreakpoint
   </script>
   {% comment %} <script src="{% static 'htmx.min.js' %}" defer></script> {% endcomment %}
+  <script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  </script>
+  <script src="{% static 'js/index.js' %}" defer></script>
   <script src="https://unpkg.com/htmx.org@1.9.12/dist/htmx.min.js"></script>
 {% endblock %}

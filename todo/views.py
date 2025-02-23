@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.http import HttpResponse, JsonResponse
@@ -99,6 +100,36 @@ def update_task_status(request, task_id):
         return redirect('tasks',task.list.pk)
     return redirect('tasks',task.list.pk)
 
+@csrf_exempt
+def update_task_name(request, task_id , updated_name):
+    if request.method == "POST":
+        task = get_object_or_404(Task, pk=task_id)
+        task.task_name = updated_name  # Toggle status
+        task.save()
+        return redirect('tasks', task.list.pk)
+    return redirect('tasks', task.list.pk)
+
+@csrf_exempt
+def edit_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    return render(request, "partials/edit_task_name.html", {"task": task,"task_name":"new name"})
+
+# @csrf_exempt
+def save_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    if request.method == "POST":
+        # task.task_name = request.POST.get("newTaskName", task.task_name)
+        data = json.loads(request.body)
+        task_name = data.get("newTaskName")
+        task.task_name = task_name
+        task.save()
+        return JsonResponse({'status': 'success', 'message': 'Task saved!'})
+    return redirect('tasks', task.list.pk)
+
+@csrf_exempt
+def cancel_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    return redirect('tasks', task.list.pk)
 
 # @csrf_exempt
 def delete_task(request, task_id):
@@ -107,7 +138,7 @@ def delete_task(request, task_id):
     return redirect('tasks',task.list.pk)
     # return new_tasks(request,task.list.pk)
     # return render(request, "forms/create_tasks_form.html")
-    return render(request, "forms/create_tasks_form.html")
+    # return render(request, "forms/create_tasks_form.html")
 
 
 

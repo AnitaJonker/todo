@@ -5,14 +5,10 @@
   Todo List
 {% endblock %}
 {% block content %}
-  <div id="body-test" class="container-sm px-4 py-5 my-5 text-center">
+  <div class="container-sm px-4 py-5 my-5 text-center">
     <div class="card shadow-lg p-3 mb-5 rounded-4">
       <h1 class="display-5 fw-bold text-primary">{{ title }}</h1>
       <div class="col-lg-6 mx-auto">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">{% bs_icon 'search' %}</span>
-          <input type="text" class="form-control" placeholder="Search for a task" aria-label="Username" aria-describedby="basic-addon1" />
-        </div>
         <div class="table-responsive">
           <table class="table">
             <tbody>

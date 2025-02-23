@@ -5,7 +5,7 @@
   Todo List
 {% endblock %}
 {% block content %}
-  <div class="container-sm px-4 py-5 my-5 text-center">
+  <div id="body-test" class="container-sm px-4 py-5 my-5 text-center">
     <div class="card shadow-lg p-3 mb-5 rounded-4">
       <h1 class="display-5 fw-bold text-primary">{{ title }}</h1>
       <div class="col-lg-6 mx-auto">
@@ -15,25 +15,47 @@
         </div>
         <div class="table-responsive">
           <table class="table">
-            <thead></thead>
             <tbody>
               {% for item in tasks %}
-                <tr>
-                  <td>{{ item.task_name }}</td>
-                  <td>
-                      <form action="{% url 'update_task_status' item.pk %}" method="POST" id="task-form-{{ item.pk }}">
-                        {% csrf_token %}
-                        <input class="form-check-input" 
-                               type="checkbox" 
-                               value="True" 
-                               id="task-{{ item.pk }}" 
-                               name="status"
-                               {% if item.status %} checked {% endif %}
-                               onchange="this.form.submit()"  
-                                />
-                    </form>
+                <tr class="">
+                   <td  id="task-name-{{ item.pk }}">{{ item.task_name }}</td> 
+                    {% comment %} {% include "partials/edit_task_name.html" with task=item%} {% endcomment %}
+
+                  {% comment %} <td id="task-name-{{ item.pk }}"><div class="input-group mb-3">
+                    <input type="label" class="form-control" value="{{ item.task_name }}">
+                  </div> {% endcomment %}
                   </td>
-        
+                  {% comment %} <td ><a hx-get="{% url 'edit_task' item.pk  %}"
+                    hx-target="#task-name-{{ item.pk }}"
+                    hx-swap="outerHTML">edit</a></td> {% endcomment %}
+                    <td>
+                      <td id="task-name-{{ item.pk }}">
+                        <div class="d-flex align-items-center">
+                            <a id="edit-task-{{ item.pk }}" hx-get="{% url 'edit_task' item.pk %}"
+                               hx-target="#task-name-{{ item.pk }}"
+                               hx-swap="outerHTML"
+                               class="btn btn-sm btn-outline-primary ms-2"
+                               onclick="this.classList.add('disabled');">
+                                {% bs_icon 'pencil-square' %}
+                            </a>
+                        </div>
+                    </td>
+                </td>
+                  <td>
+                        <form action="{% url 'update_task_status' item.pk %}" method="POST" id="task-form-{{ item.pk }}">
+                          {% csrf_token %}
+                          <div >
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   value="True"
+                                   id="task-{{ item.pk }}"
+                                   name="status"
+                                   {% if item.status %} checked {% endif %}
+                                   onchange="this.form.submit()"
+                                    />
+                          </div>
+                          </form>
+                  </td> 
                 {% comment %} <td>
                   {% include "partials/task_status_cell.html" with task=item %}
                 </td> {% endcomment %}
@@ -41,29 +63,35 @@
                     <a href="{% url 'update_task_status' item.pk %}">update</a>
                    </td> {% endcomment %}
                   <td>
-                   <a href="{% url 'delete_task' item.pk %}">Delete</a>
+                   <a class="btn btn-sm btn-danger" href="{% url 'delete_task' item.pk %}">Delete</a>
                   </td>
-                  
+
                 </tr>
               {% endfor %}
             </tbody>
           </table>
-          <p id="task-counter">Tasks Completed {{ completed }} / {{ total }}</p>
+          <p id="task-counter" class="lead">Tasks Completed {{ completed }} / {{ total }}</p>
 
-          <p class="lead mb-4">Add a new item to your list</p>
+            <p class="lead mb-4">Add a new item to your list</p>
+                    <form method="post">
+              {% csrf_token %}
+                {% for field in form.visible_fields %}
+                  <div class="form-group my-1">
+                    <label class="text-primary" for="{{ field.id_for_label }} ">{{ field.label }}</label>
+                    {% render_field field class='form-control '  %}
+                {% endfor %}
+                <div class="mt-3">
+                      <input class="btn btn-primary" type="submit" value="Save" />
+              </div>
+            </form>
         </div>
-        <form method="post">
-            {% csrf_token %}
-              {% for field in form.visible_fields %}
-                <div class="form-group my-1">
-                  <label for="{{ field.id_for_label }} ">{{ field.label }}</label>
-                  {% render_field field class='form-control'  %}
-              {% endfor %}
-              <div class="mt-3">
-                    <input class="btn btn-primary" type="submit" value="Save" />
-            </div>
-          </form>
+          <div class="mt-3">
+            <!-- Back button as a link to main menu -->
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back to Lists</a>
+        </div>
+
       </div>
     </div>
   </div>
+  
 {% endblock %}

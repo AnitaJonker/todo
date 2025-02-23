@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% include "navbar.html" %}
 {% block content %}
-  <div class="container-sm container d-flex justify-content-center">
-      <main class=" align-items-center w-50 m-auto">
-      <form class="mt-5 p-3">
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+      <main class="w-50 mx-auto card shadow-lg p-3 mb-5 rounded-4 mt-5">
+      <form class="mt-5 p-3" method="post">
+        {% csrf_token %}
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
-          <label for="floatingInput">Email address</label>
+          <input type="text" name="username" class="form-control" id="floatingInput" placeholder="name@example.com" />
+          <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating mt-3">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" />
           <label for="floatingPassword">Password</label>
         </div>
         <div class="form-check text-start my-3">

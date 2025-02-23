@@ -1,0 +1,24 @@
+{% load bootstrap_icons %}
+<div class="d-flex p-1">
+  <input class="form-control" id="task-input-{{ task.pk }}" value="{{ task.task_name }}" />
+  <div class="d-flex gap-1 mx-1">
+    <a onclick="saveTask({{ task.pk }})" hx-target="#task-name-{{ task.pk }}" hx-swap="outerHTML" class="d-flex align-items-center btn btn-outline-secondary">{% bs_icon 'check-lg' %}</a>
+    <a href="{% url 'cancel_task' task.pk %}" hx-target="#task-name-{{ task.pk }}" hx-swap="outerHTML" type="submit" class="d-flex align-items-center btn btn-outline-secondary">{% bs_icon 'x-lg' %}</a>
+  </div>
+</div>
+
+{% comment %} <div class="d-flex p-1">
+  <input class="form-control" name="task_name" value="{{ task.task_name }}" />
+  <div class="d-flex gap-1 mx-1">
+    <a href="{% url 'save_task' task.pk %}" hx-target="#task-name-{{ task.pk }}" hx-swap="outerHTML" class="d-flex align-items-center btn btn-outline-secondary">{% bs_icon 'check-lg' %}</a>
+    <a href="{% url 'cancel_task' task.pk %}" hx-target="#task-name-{{ task.pk }}" hx-swap="outerHTML" type="submit" class="d-flex align-items-center btn btn-outline-secondary">{% bs_icon 'x-lg' %}</a>
+  </div>
+
+  <div class="d-flex gap-1 mx-1">
+    <!-- Save Button -->
+    <button type="submit" class="d-flex align-items-center btn btn-outline-secondary">{% bs_icon 'check-lg' %}</button>
+
+    <!-- Cancel Button -->
+    <a href="{% url 'cancel_task' task.pk %}" hx-target="#task-name-{{ task.pk }}" hx-swap="outerHTML" class="d-flex align-items-center btn btn-outline-secondary">{% bs_icon 'x-lg' %}</a>
+  </div>
+</div> {% endcomment %}

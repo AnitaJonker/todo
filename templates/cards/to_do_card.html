@@ -10,7 +10,7 @@
       <div class="col-lg-6 mx-auto">
         <div class="input-group mb-3">
           <span class="input-group-text" id="basic-addon1">{% bs_icon 'search' %}</span>
-          <input type="text" class="form-control" placeholder="Search for a task" aria-label="Username" aria-describedby="basic-addon1" />
+          <input type="text" class="form-control" placeholder="Search for a List" aria-describedby="basic-addon1" />
         </div>
         <div class="table-responsive">
           <table class="table">
@@ -19,7 +19,7 @@
               {% for item in items %}
                 <tr>
                   <td>
-                    <a href="{% url 'tasks' item.pk %}">{{ item.list_name }}</a>
+                    <a class="link-offset-2 link-underline link-underline-opacity-0" href="{% url 'tasks' item.pk %}">{{ item.list_name }}</a>
                   </td>
                 </tr>
               {% empty %}

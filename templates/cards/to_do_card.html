@@ -8,10 +8,45 @@
     <div class="card shadow-lg p-3 mb-5 rounded-4">
       <h1 class="display-5 fw-bold text-primary">{{ title }}</h1>
       <div class="col-lg-6 mx-auto">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">{% bs_icon 'search' %}</span>
-          <input type="text" class="form-control" placeholder="Search for a List" aria-describedby="basic-addon1" />
-        </div>
+        <form  role="search" action="{% url 'search' 'search' %}">
+          {% csrf_token %}
+          <div >
+            <div class="search-div ">
+              <span class="form-label py-4">List</span>
+              <div class="input-group mt-1">
+                <input class="form-control form-control"
+                       name="search"
+                       type="text"
+                       id="search"
+                       value="{{ search_term }}"
+                       {% comment %}
+                       hx-headers='{"action":  "test"}}'
+                       {% endcomment %}
+                       placeholder="Search..." />
+                {% if search_term %}
+                  <a class="btn btn-outline-secondary"
+                     href="{% url 'index' %}"
+                     hx-include="#filter-form"
+                     hx-headers='{"action": "action"}'
+                     id="clear-segment">{% bs_icon 'x' %}</a>
+                {% endif %}
+                <button class="btn btn-outline-secondary d-flex align-items-center justify-content-center"
+                        id="search-button">{% bs_icon 'search' %}</button>
+              </div>
+          {% comment %} <input class="form-control me-2" type="search" name='search' placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button> {% endcomment %}
+        </form>
+        {% comment %} <div class="input-group mb-3">
+          <form class="d-flex" role="search" action="{% url 'search' 'search' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" name='search' placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+          <form  class="d-flex" role="search" action="{% url 'search' 'search' %}">
+           
+          </form>
+        </div> {% endcomment %}
+        
         <div class="table-responsive">
           <table class="table">
             <thead></thead>

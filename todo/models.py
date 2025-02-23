@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 #users
 
@@ -15,6 +15,7 @@ class List(models.Model):
     status = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     
 #task
 #task number
@@ -28,7 +29,7 @@ class List(models.Model):
 class Task(models.Model):
     list = models.ForeignKey(List, on_delete=models.CASCADE,related_name='tasks')
     task_name= models.CharField(max_length=50)
-    # task_number = models.IntegerField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
     
     #Tags

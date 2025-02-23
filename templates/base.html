@@ -4,8 +4,12 @@
 {% block main_content %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" />
   <link rel="stylesheet" href="{% sass_src 'styles.scss' %}" type="text/css" />
+
   {% comment %} {% bootstrap_css %} {% endcomment %}
   {% bootstrap_javascript %}
+  <nav>
+    {% include 'navbar.html' %}
+  </nav>
   {% block content %}
 
   {% endblock %}

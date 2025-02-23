@@ -25,11 +25,17 @@
               {% else %}
                 <input class="btn btn-primary" type="submit" value="Create List" />
               {% endif %}
+              <a href="{% url 'index' %}" class="btn btn-secondary">Back to Lists</a>
+
               {% comment %} <a  class="btn btn-primary my-3">Back</a> {% endcomment %}
             </div>
+            <div class="mt-3">
+              <!-- Back button as a link to main menu -->
+          </div>
           </div>
         </div>
       </form>
+    
     </div>
     </div>
   {% endblock %}

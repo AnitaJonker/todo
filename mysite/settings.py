@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap5',
     'todo',
+    "members",
     'sass_processor',
     'django_bootstrap_icons',
     'livereload',

@@ -7,7 +7,8 @@
     "load": "concurrently \"python manage.py livereload\" \"python manage.py runserver\"",
     "live": "python manage.py livereload",
     "server": "python manage.py runserver",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "env": "echo \"venv/Scripts/Activate.ps1\""
   },
   "repository": {
     "type": "git",

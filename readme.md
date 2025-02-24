@@ -1,8 +1,9 @@
 ## Get Started
+
 ## Test git change after power failure
 
-
 Setup Environment
+
 ```
 python3 -m venv venv
 #activate virtual env
@@ -12,6 +13,9 @@ npm install
 ```
 
 ```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py collectstatic #yes if asked
 npm run server
 127.0.0.1:8000 -> Display Login page.
 Select Register to register
